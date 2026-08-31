@@ -1,5 +1,5 @@
 const { Events, GuildMember } = require('discord.js');
-const { extremePunish } = require('../commands/lorelei/punish.js');
+const { extremePunish } = require('../commands/AYAYA/punish.js');
 
 /**
  * @typedef Message

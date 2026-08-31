@@ -1,4 +1,4 @@
-//oinks command, used to check oinks from Lorelei's twitch
+//balls command, used to check balls from aya's twitch
 require('dotenv').config();
 const { SlashCommandBuilder } = require('discord.js');
 const twitchManager = require('../../twitchManager');
@@ -7,8 +7,8 @@ const CHANNEL_ID = process.env.CHANNEL_ID;
 
 //name of slash command & description
 const data = new SlashCommandBuilder()
-  .setName('oinks')
-  .setDescription('Checks your oinks')
+  .setName('balls')
+  .setDescription('Checks your balls')
   .addStringOption((option) =>
     option.setName('name').setDescription('Your twitch username')
   );
@@ -41,9 +41,9 @@ const execute = async (interaction) => {
         ephemeral: true,
       });
     } else {
-      const [oinks, rank] = [response.points, response.rank];
+      const [balls, rank] = [response.points, response.rank];
       await interaction.followUp(
-        `You have ${oinks} oinks! Your rank is ${rank}/${total} on the leaderboard.`
+        `You have ${balls} balls! Your rank is ${rank}/${total} on the leaderboard.`
       );
     }
   } catch (err) {

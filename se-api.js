@@ -3,50 +3,41 @@ require('dotenv').config();
 const TOKEN = process.env.JWT_TOKEN;
 const channelId = process.env.CHANNEL_ID;
 
-const data = {
-  users: [
-    {
-      username: 'frostierbunny',
-      current: 200,
+const getPointsLeaderboard = async () => {
+  const URL = `https://api.streamelements.com/kappa/v2/points/${channelId}/top`;
+
+  const response = await fetch(URL, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      Authorization: `Bearer ${TOKEN}`,
     },
-  ],
-  mode: 'add',
+  });
+
+  if (!response.ok) {
+    throw new Error(
+      `StreamElements API returned ${response.status}: ${await response.text()}`
+    );
+  }
+
+  return response.json();
 };
 
-console.log(JSON.stringify(data));
+const getUserPoints = async (twitchUsername) => {
+  const data = await getPointsLeaderboard();
 
-const put_options = {
-  method: 'PUT',
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-    Authorization: `Bearer ${TOKEN}`,
-  },
-  body: JSON.stringify(data),
+  const user = data.users.find(
+    (user) => user.username.toLowerCase() === twitchUsername.toLowerCase()
+  );
+
+  if (!user) {
+    return null;
+  }
+
+  return user.points;
 };
 
-const options = {
-  method: 'GET',
-  headers: {
-    'Content-Type': 'application/json',
-    Authorization: `Bearer ${TOKEN}`,
-  },
+module.exports = {
+  getPointsLeaderboard,
+  getUserPoints,
 };
-
-const PUT_URL = `https://api.streamelements.com/kappa/v2/points/${channelId}`;
-const URL = `https://api.streamelements.com/kappa/v2/points/${channelId}/top`;
-// const URL = 'https://api.streamelements.com/kappa/v2/users/current';
-
-fetch(PUT_URL, put_options)
-  .then((response) => {
-    console.log('Successfully added points');
-    return response.text();
-  })
-  .then(async (response) => {
-    console.log(response);
-
-    const res = await fetch(URL, options);
-    const text = await res.json();
-    console.log(text);
-  })
-  .catch((err) => console.error(err));

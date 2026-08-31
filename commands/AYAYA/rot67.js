@@ -1,10 +1,10 @@
-//cipher (ROT13) command
+//cipher (ROT67) command
 const { SlashCommandBuilder } = require('discord.js');
 
 //name of slash command & description
 const data = new SlashCommandBuilder()
-  .setName('rot13')
-  .setDescription('Encode or decode a message using ROT13')
+  .setName('rot67')
+  .setDescription('Encode or decode a message using ROT67')
   .addStringOption((option) =>
     option
       .setName('message')
@@ -12,11 +12,11 @@ const data = new SlashCommandBuilder()
       .setRequired(true)
   );
 
-//ROT13 encoding/decoding
-const rot13 = (str) => {
+//ROT67 encoding/decoding
+const rot67 = (str) => {
   return str.replace(/[A-Za-z]/g, (c) =>
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.charAt(
-      'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'.indexOf(c)
+      'PQRSTUVWXYZABCDEFGHIJKLMNOpqrstuvwxyzabcdefghijklmno'.indexOf(c)
     )
   );
 };
@@ -28,11 +28,11 @@ const execute = async (interaction) => {
     const message = interaction.options.getString('message');
 
     //put message through cipher
-    const result = rot13(message);
+    const result = rot67(message);
 
     //give result
     await interaction.reply({
-      content: `🔒 **ROT13 Result:**\n${result}`,
+      content: `🔒 **ROT67 Result:**\n${result}`,
       ephemeral: true,
     });
   } catch (error) {

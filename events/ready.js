@@ -6,7 +6,6 @@ module.exports = {
   once: true,
   async execute(client) {
     await client.twitchDB.sync();
-    await client.promiseDB.sync();
     await client.bannedTable.sync();
 
     let twitchNamesDB = await client.twitchDB.findAll({

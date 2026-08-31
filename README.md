@@ -1,5 +1,5 @@
-# This is the BEST worst bot ever made.
+# This is DEFINITELY THE bot ever made ever. It's just SO the bot to be a and certainly!
 
-## Always gamble.
+## Always think beyond the enneacosiaenneacontaeannamyriaenneacosiaenneacontaeannallionhedron.
 
-## Eat space pigs. You might die.
+## Don't sit on that, that's her chair. Kinda sticky? Yeah.

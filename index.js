@@ -45,17 +45,6 @@ const Twitch = sequelize.define('twitch_name', {
   twitch_name: Sequelize.STRING,
 });
 
-const LPromises = sequelize.define('promise', {
-  promise: {
-    type: Sequelize.TEXT,
-    unique: true,
-  },
-  fulfilled: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: false,
-  },
-});
-
 const bannedTable = sequelize.define('regex', {
   regex: {
     type: Sequelize.TEXT,
@@ -65,7 +54,6 @@ const bannedTable = sequelize.define('regex', {
 });
 
 client.twitchDB = Twitch;
-client.promiseDB = LPromises;
 client.bannedTable = bannedTable;
 // *** END OF DATABASE STUFF ***
 
@@ -109,4 +97,9 @@ for (const file of eventFiles) {
   }
 }
 
+client.on('error', (error) => {
+    console.error('Discord client error:', error);
+});
+
 client.login(TOKEN);
+

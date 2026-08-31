@@ -1,7 +1,7 @@
 {
   "name": "oinker-bot",
   "version": "0.0.1",
-  "description": "A Discord bot for a certain space cat.",
+  "description": "A Discord bot for NOT a certain space cat.",
   "main": "index.js",
   "scripts": {
     "deploy": "node deploy-commands.js",

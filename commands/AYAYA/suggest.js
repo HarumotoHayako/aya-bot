@@ -4,7 +4,7 @@ const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 //name of slash command & description
 const data = new SlashCommandBuilder()
   .setName('suggest')
-  .setDescription('Send suggestions/feedback for the mod team & Lorelei')
+  .setDescription('Send suggestions/feedback for the mod team & Aya!')
   .addStringOption((option) =>
     option
       .setName('category')
@@ -41,7 +41,7 @@ const execute = async (interaction) => {
     //1281299794903433267 real
     //suggestions go to mod-alerts channel
     const suggestionChannel = interaction.client.channels.cache.get(
-      '1281299794903433267'
+      '1543890592772137002'
     );
 
     //make an embed with the suggestion
@@ -64,14 +64,14 @@ const execute = async (interaction) => {
     //reply to the user
     await interaction.reply({
       content:
-        'Your suggestion has been sent successfully! <:nyaSalute:1251618350736478270>',
+        'Your sayaggestion has been sent successfully! <a:ayaRave:1301349685088223232>',
       ephemeral: true,
     });
   } catch (error) {
     console.error(error);
     await interaction.reply({
       content:
-        'Something went wrong while sending your suggestion... <:nyaSad:1250106743514599435>',
+        'Something went wrong while sending your sayaggestion... <a:ayanooo:1343972781972390051>',
       ephemeral: true,
     });
   }
